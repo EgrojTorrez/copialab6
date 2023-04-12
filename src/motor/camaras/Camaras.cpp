@@ -37,9 +37,7 @@ void Camara::render_cross()
 
 void Camara::lock_objeto(Objeto &obj)
 {
-    //Hay que implementar
-    
-    
+    objeto_seguir = &obj;
 };
 
 void Camara::unluck_objeto()
@@ -49,7 +47,7 @@ void Camara::unluck_objeto()
 
 void Camara::projectar(std::vector<Objeto*> objetos)
 {
-
+    
     for(auto& obj:objetos)
     {
         obj->set_posx(obj->get_posx()-pos_mundo.x);

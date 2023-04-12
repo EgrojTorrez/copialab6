@@ -29,6 +29,9 @@ class Camara
         void unluck_objeto();
         Objeto* get_obj_lock()const{return objeto_seguir;};
 
+        int get_width() const {return width;};
+        int get_height() const {return height;};
+
         /*FSM métodos*/
         void input_handle(KeyOyente &input, MouseOyente &mouse);
         void update();

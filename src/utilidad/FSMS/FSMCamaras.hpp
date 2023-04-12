@@ -52,6 +52,8 @@ class EstadoCamaraTransicion : public FSMCamara
     private:
         Coordenadas check;
         Coordenadas ant_check;
+        float diff =0.10; //10 puntos por linea(1/diff)
+        float u= 0;
 };
 
 class EstadoCamaraLock : public FSMCamara
