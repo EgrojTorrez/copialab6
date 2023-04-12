@@ -53,16 +53,15 @@ FSMCamara* EstadoCamaraMover::input_handle(Camara &cam, KeyOyente &keys, MouseOy
 
 void EstadoCamaraMover::on_entrar(Camara &cam)
 {
-    //Hay que implementar
-
+    cam.set_posicion_mundo({cam.get_posicion_mundo().x + (int)(direccion.x * cam.velocidad), cam.get_posicion_mundo().y + (int)(direccion.y * cam.velocidad)});
 };
 void EstadoCamaraMover::on_salir(Camara &cam)
 {
-    //Hay que implementar
+    cam.set_posicion_mundo({0,0});
 };
 void EstadoCamaraMover::on_update(Camara &cam)
 {
-    //Hay que implementar
+
 };
 
 /*

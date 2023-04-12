@@ -1,34 +1,23 @@
-# el compilador a utilizar
 COMPILADOR = g++
-#/opt/homebrew/Cellar/sdl2/2.26.1 
-LIBRERIAS_PATH = /opt/homebrew
 
-#folder de los archivos fuente
+LIBRERIAS_PATH = C:\SDL2MINGW\x86_64-w64-mingw32
+
 SRC = src
 
+CFLAGS = -std=c++17 -O2 -I"$(LIBRERIAS_PATH)\include\SDL2"
 
-# banderas del procesador y los includes de las librerias
-CFLAGS = -std=c++17 -O3 -I$(LIBRERIAS_PATH)/include/SDL2 
-CFLAGSDEBUG = -std=c++17 -g -I$(LIBRERIAS_PATH)/include/SDL2 
-# banderas del linker y la librerias
-LDFLAGS = -L$(LIBRERIAS_PATH)/lib `pkg-config --static --libs --cflags sdl2 SDL2_ttf`
+LDFLAGS = -L"$(LIBRERIAS_PATH)\lib" -lmingw32 -mwindows -mconsole -lSDL2main -lSDL2 -lSDL2_ttf 
 
-MACROS =# -D RECTANGULOS
+PROG = main.exe
 
-# nombre del programa
-TARGET = main
+CPP_SOURCE = $(wildcard *.cpp) $(wildcard src/*.cpp) $(wildcard src/*/*.cpp) $(wildcard src/*/*/*.cpp)
+CPP_HEADER = $(wildcard *.hpp) $(wildcard src/*.hpp) $(wildcard src/*/*.hpp) $(wildcard src/*/*/*.hpp)
 
-# reglas, obtener todos los archivos .cpp y .hpp
-CPP_SOURCE = $(wildcard *.cpp) $(wildcard $(SRC)/*.cpp) $(wildcard $(SRC)/*/*.cpp) $(wildcard $(SRC)/*/*/*.cpp)
-CPP_HEADERS = $(wildcard *.hpp) $(wildcard $(SRC)/*.hpp) $(wildcard $(SRC)*/*.hpp) $(wildcard $(SRC)/*/*/*.hpp)
+$(PROG): $(CPP_SOURCE) $(CPP_HEADER)
+	$(COMPILADOR) $(CFLAGS) -o $(PROG) $(CPP_SOURCE) $(LDFLAGS)
 
-# compilar
-$(TARGET): $(CPP_SOURCE) $(CPP_HEADERS)
-	$(COMPILADOR) $(CFLAGS) $(MACROS) -o $(TARGET) $(CPP_SOURCE) $(LDFLAGS)
+debug: $(CPP_SOURCE) $(CPP_HEADER)
+	$(COMPILADOR) $(CFLAGSDEBUG) $(CPP_SOURCE) -o $(PROG)
 
-debug: $(CPP_SOURCE) $(CPP_HEADERS)
-	$(COMPILADOR) $(CFLAGSDEBUG) -o $(TARGET) $(CPP_SOURCE) $(LDFLAGS)
-
-# borrar el programa del folder
-clean:
-	rm -f $(TARGET)
+correr:
+	.\$(PROG)

@@ -5,6 +5,7 @@
 #include <SDL_ttf.h>
 #include "utilidad/RenderTexto.hpp"
 #include "motor/fisica/MotorFisico.hpp"
+#include <cmath>
 
 //#define RECTANGULOS
 //#define TRIANGULOS

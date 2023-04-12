@@ -49,8 +49,13 @@ void Camara::unluck_objeto()
 
 void Camara::projectar(std::vector<Objeto*> objetos)
 {
-    //Hay que implementar
-    
+
+    for(auto& obj:objetos)
+    {
+        obj->set_posx(obj->get_posx()-pos_mundo.x);
+        obj->set_posy(obj->get_posy()-pos_mundo.y);
+    }
+        
 };
 
 void Camara::renderizar(std::vector<Objeto*>objetos)
